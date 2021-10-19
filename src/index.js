@@ -114,15 +114,17 @@ const Game = () => {
         />
         <button
           onClick={() => {
-            setBoardSize(inputValue);
-            setHistory([
-              {
-                squares: Array(inputValue * inputValue).fill(null),
-                position: null,
-              },
-            ]);
-            setStepNumber(0);
-            setInput("");
+            if (inputValue >= 5) {
+              setBoardSize(inputValue);
+              setHistory([
+                {
+                  squares: Array(inputValue * inputValue).fill(null),
+                  position: null,
+                },
+              ]);
+              setStepNumber(0);
+              setInput("");
+            } else alert("Please input >5");
           }}
         >
           {" "}
