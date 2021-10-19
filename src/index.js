@@ -114,7 +114,7 @@ const Game = () => {
         />
         <button
           onClick={() => {
-            if (inputValue >= 5) {
+            if (inputValue >= 5 && inputValue <= 20) {
               setBoardSize(inputValue);
               setHistory([
                 {
@@ -124,7 +124,7 @@ const Game = () => {
               ]);
               setStepNumber(0);
               setInput("");
-            } else alert("Please input >5");
+            } else alert("Please input  value>=5 and value <=20");
           }}
         >
           {" "}
