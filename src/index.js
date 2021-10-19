@@ -174,14 +174,13 @@ function calculateResult(squares) {
     countXO[2] = [];
     countXO[3] = [];
     for (let j = 0; j < boardSize; j++) {
-      let getBoxValueHorizontal = squares[i * boardSize + j];
-      let getBoxValueVertical = squares[j * boardSize + i];
-      if (getBoxValueHorizontal !== null) {
+      let boxHorizontal = squares[i * boardSize + j];
+      let boxVertical = squares[j * boardSize + i];
+      if (boxHorizontal !== null) {
         countChecked++;
       }
       // check vertical row X and O
-      // eslint-disable-next-line default-case
-      switch (getBoxValueVertical) {
+      switch (boxVertical) {
         case "X": {
           countXO[1] = [];
           countXO[0].push(j * boardSize + i);
@@ -213,7 +212,7 @@ function calculateResult(squares) {
         }
       }
       // check horizontal row X and O
-      switch (getBoxValueHorizontal) {
+      switch (boxHorizontal) {
         case "X": {
           countXO[3] = [];
           countXO[2].push(i * boardSize + j);
@@ -256,8 +255,8 @@ function calculateResult(squares) {
   }
   // check diagonal
 
-  let countXDiagonal = [[], [], [], []]; //LR upper, LR lower, RL upper, RL lower -- X
-  let countODiagonal = [[], [], [], []]; //LR upper, LR lower, RL upper, RL lower -- O
+  let countXDiagonal = [[], [], [], []];
+  let countODiagonal = [[], [], [], []];
   for (let i = 0; i < boardSize; i++) {
     countXDiagonal[0] = [];
     countXDiagonal[1] = [];
@@ -269,13 +268,12 @@ function calculateResult(squares) {
     countODiagonal[2] = [];
     countXDiagonal[3] = [];
     for (let j = 0; j < boardSize - i; j++) {
-      let getBoxValueUpperLR = squares[j * boardSize + j + i];
-      let getBoxValueUpperRL = squares[(boardSize - j - 1 - i) * boardSize + j];
-      let getBoxValueLowerLR = squares[(j + i) * boardSize + j];
-      let getBoxValueLowerRL =
-        squares[(j + i) * boardSize + (boardSize - j - 1)];
+      let boxUpperLR = squares[j * boardSize + j + i];
+      let boxUpperRL = squares[(boardSize - j - 1 - i) * boardSize + j];
+      let boxLowerLR = squares[(j + i) * boardSize + j];
+      let boxLowerRL = squares[(j + i) * boardSize + (boardSize - j - 1)];
       // check horizontal row X and O
-      switch (getBoxValueUpperLR) {
+      switch (boxUpperLR) {
         case "X": {
           countODiagonal[0] = [];
           countXDiagonal[0].push(j * boardSize + j + i);
@@ -307,7 +305,7 @@ function calculateResult(squares) {
         }
       }
       //
-      switch (getBoxValueLowerLR) {
+      switch (boxLowerLR) {
         case "X": {
           countODiagonal[1] = [];
           countXDiagonal[1].push((j + i) * boardSize + j);
@@ -339,7 +337,7 @@ function calculateResult(squares) {
         }
       }
       //
-      switch (getBoxValueUpperRL) {
+      switch (boxUpperRL) {
         case "X": {
           countODiagonal[2] = [];
           countXDiagonal[2].push((boardSize - j - 1 - i) * boardSize + j);
@@ -371,7 +369,7 @@ function calculateResult(squares) {
         }
       }
       //
-      switch (getBoxValueLowerRL) {
+      switch (boxLowerRL) {
         case "X": {
           countODiagonal[3] = [];
           countXDiagonal[3].push((j + i) * boardSize + (boardSize - j - 1));
