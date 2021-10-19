@@ -109,7 +109,9 @@ const Game = () => {
           min="5"
           value={inputValue}
           onChange={(e) => {
-            setInput(e.target.value);
+            if (e >= 5) {
+              setInput(e.target.value);
+            } else alert("Please input >5");
           }}
         />
         <button
